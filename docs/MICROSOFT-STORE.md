@@ -18,6 +18,7 @@ Identidade pública do pacote:
 Também são necessários um **preço pago**, classificação etária, descrições e imagens
 em Português e English e notas para certificação explicando que `runFullTrust` é usado
 para detectar o processo local do iRacing e iniciar/encerrar os apps escolhidos.
+Os textos prontos para as duas listagens estão em [STORE-LISTING.md](STORE-LISTING.md).
 
 Esses identificadores são públicos. Nunca versione senha, MFA, documentos, tokens,
 chaves privadas, certificados `.pfx` ou senhas de certificado.
@@ -32,6 +33,8 @@ expected and must not be offered for direct installation.
 Choose a **paid price**, complete the age rating, add Portuguese and English listings
 and images, and explain in certification notes that `runFullTrust` detects the local
 iRacing process and starts/stops only user-selected applications.
+Paste-ready copy for both Store listings is available in
+[STORE-LISTING.md](STORE-LISTING.md).
 
 The package identifiers above are public. Never commit passwords, MFA data, identity
 documents, tokens, private keys, `.pfx` certificates, or certificate passwords.

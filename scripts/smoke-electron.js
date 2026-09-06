@@ -19,7 +19,7 @@ fs.copyFileSync(fixturePath, mapFixturePath);
 const editableFixture = path.join(temporary, 'ConfiguredCompanion.exe');
 fs.copyFileSync(fixturePath, editableFixture);
 const sourceApps = [{ id: 'fixture', name: 'Aplicativo de teste', path: fixturePath }];
-fs.writeFileSync(path.join(data, 'apps.json'), JSON.stringify({ monitorEnabled: false, stopWhenIracingCloses: true, apps: sourceApps }));
+fs.writeFileSync(path.join(data, 'apps.json'), JSON.stringify({ language: 'pt-BR', monitorEnabled: false, stopWhenIracingCloses: true, apps: sourceApps }));
 const mapName = 'Local\\SessionLauncherTest-' + process.pid;
 const fixture = spawn(mapFixturePath, [mapName], { windowsHide: true, stdio: ['pipe', 'pipe', 'pipe'] });
 let app;
