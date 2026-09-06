@@ -37,3 +37,5 @@ Known limitations and requirements are in `docs/README.en.txt`.
   and English resources, and only the required `runFullTrust` capability.
 - Chromium locale resources are limited to Portuguese and English, reducing the
   installed size without removing runtime or graphics components.
+- Distribution model clarified: identical functional releases remain free on GitHub;
+  only the copyright holder may sell the official Microsoft Store distribution.

@@ -19,12 +19,18 @@ this transparent community alternative.
 No iRacing Manager code, libraries, icons, or files are redistributed here. Only its
 general purpose inspired this project.
 
-## Free forever
+## Always free on GitHub
 
-The application is and will always be free. Its public code may be used, studied,
-modified, and redistributed free of charge, but the application or modified copies
-may not be sold. See [LICENSE](LICENSE). Because commercial use is restricted, this is
-source-available freeware rather than OSI-defined open source.
+Every functional version offered through the Microsoft Store will also remain
+available free of charge on this GitHub repository. The code may be used, studied,
+modified, and redistributed for free. Third parties may not sell the application,
+copies, or modified versions. Only the copyright holder, Lipp Cruz, may commercially
+distribute the official application. See [LICENSE](LICENSE).
+
+The paid Microsoft Store distribution funds maintenance time and offers a package
+signed, certified, and delivered by Microsoft infrastructure. Store certification and
+signing improve origin and installation trust but cannot guarantee that software has
+no defects or vulnerabilities.
 
 ## Features and behavior
 
@@ -52,7 +58,8 @@ This beta is unsigned. If Windows reports an unrecognized app, verify the offici
 download and matching hash, then choose **More info** and **Run anyway**. If the hash
 differs, do not run it and report the incident. Do not disable SmartScreen or antivirus.
 The permanent distribution solution is consistent trusted code signing or Microsoft
-Store distribution; a self-signed certificate does not establish third-party trust.
+Users who prefer a signed and Store-certified installation may purchase the official
+Microsoft Store distribution. A self-signed certificate does not establish trust.
 
 Configuration is stored at `%APPDATA%\iracing-session-launcher\apps.json`.
 

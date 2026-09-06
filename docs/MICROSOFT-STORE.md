@@ -15,7 +15,7 @@ Identidade pública do pacote:
 - Application ID: `iRacingSessionLauncher`
 - Capability: `runFullTrust`
 
-Também são necessários preço **Gratuito**, classificação etária, descrições e imagens
+Também são necessários um **preço pago**, classificação etária, descrições e imagens
 em Português e English e notas para certificação explicando que `runFullTrust` é usado
 para detectar o processo local do iRacing e iniciar/encerrar os apps escolhidos.
 
@@ -29,7 +29,7 @@ Build the Store package with `npm run dist:store`; it is written under
 Partner Center. Microsoft signs it after certification. The local unsigned file is
 expected and must not be offered for direct installation.
 
-Set pricing to **Free**, complete the age rating, add Portuguese and English listings
+Choose a **paid price**, complete the age rating, add Portuguese and English listings
 and images, and explain in certification notes that `runFullTrust` detects the local
 iRacing process and starts/stops only user-selected applications.
 

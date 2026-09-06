@@ -22,13 +22,18 @@ O iRacing Session Launcher não reutiliza código, bibliotecas, ícones ou arqui
 iRacing Manager. A inspiração está no objetivo do produto: acompanhar a sessão do
 simulador e administrar os aplicativos escolhidos pelo usuário.
 
-## Gratuito para sempre
+## Gratuito no GitHub para sempre
 
-O aplicativo é e sempre será gratuito. O código pode ser lido, usado, estudado,
-modificado e redistribuído gratuitamente. A venda do aplicativo, de cópias ou de
-versões modificadas é proibida. Consulte [LICENSE](LICENSE) para os termos completos.
-Por conter uma restrição comercial, esta é uma licença de código público e uso livre
-não comercial, e não uma licença "open source" segundo a definição da OSI.
+Cada versão funcional oferecida na Microsoft Store também será disponibilizada
+gratuitamente neste GitHub. O código pode ser lido, usado, estudado, modificado e
+redistribuído gratuitamente. Terceiros não podem vender o aplicativo, suas cópias ou
+versões modificadas. Somente o titular, Lipp Cruz, pode comercializar a distribuição
+oficial. Consulte [LICENSE](LICENSE) para os termos completos.
+
+A versão paga da Microsoft Store financia o tempo dedicado à manutenção e oferece a
+conveniência de um pacote assinado, certificado e distribuído pela infraestrutura da
+Microsoft. A certificação e a assinatura melhoram a confiança da origem e instalação,
+mas não constituem garantia absoluta de ausência de falhas ou vulnerabilidades.
 
 ## O que ele faz
 
@@ -66,9 +71,9 @@ final não precisa instalar Node.js, Python ou ferramentas de desenvolvimento.
 3. Se o hash for idêntico, selecione **Mais informações** e **Executar assim mesmo**.
 4. Se o hash for diferente, não execute o arquivo e reporte o ocorrido.
 
-Não desative o SmartScreen ou o antivírus. A solução permanente planejada é assinar
-todas as versões com uma identidade validada ou distribuir pela Microsoft Store.
-Certificados autoassinados não estabelecem confiança em computadores de terceiros.
+Não desative o SmartScreen ou o antivírus. Quem preferir uma instalação assinada e
+certificada pode adquirir a distribuição oficial pela Microsoft Store. Certificados
+autoassinados não estabelecem confiança em computadores de terceiros.
 
 As configurações ficam em `%APPDATA%\iracing-session-launcher\apps.json`.
 
