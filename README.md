@@ -204,4 +204,5 @@ dos logs e inclua versão do Windows, versão do launcher e passos para reproduz
 
 Para vulnerabilidades, não publique detalhes exploráveis em uma issue aberta. Siga
 [SECURITY.md](SECURITY.md). Para contribuir com código, leia
-[CONTRIBUTING.md](CONTRIBUTING.md).
+[CONTRIBUTING.md](CONTRIBUTING.md). O tratamento de dados locais está descrito em
+[PRIVACY.md](PRIVACY.md).

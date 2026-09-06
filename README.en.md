@@ -135,4 +135,5 @@ depends on the target app, and forced termination may lose unsaved data.
 
 Bug reports and suggestions are welcome. Thank you in advance for spending time on
 testing and improvements. Remove private paths and data before sharing logs. Read
-[SECURITY.en.md](SECURITY.en.md) and [CONTRIBUTING.en.md](CONTRIBUTING.en.md).
+[SECURITY.en.md](SECURITY.en.md), [CONTRIBUTING.en.md](CONTRIBUTING.en.md), and the
+bilingual [privacy policy](PRIVACY.md).
