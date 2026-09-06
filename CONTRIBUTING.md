@@ -1,5 +1,7 @@
 # Contribuindo
 
+**Português** | [English](CONTRIBUTING.en.md)
+
 Obrigado antecipadamente por relatar bugs, sugerir ajustes ou enviar uma correção.
 
 ## Issues

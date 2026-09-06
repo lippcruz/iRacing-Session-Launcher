@@ -1,46 +1,46 @@
-name: Relatar um bug
-description: Informe um comportamento incorreto ou inesperado.
+name: Relatar um bug / Report a bug
+description: Informe um problema. / Tell us about unexpected behavior.
 title: "[Bug]: "
 labels: [bug]
 body:
   - type: markdown
     attributes:
-      value: Remova nomes, caminhos pessoais e argumentos privados antes de enviar logs.
+      value: Remova dados privados dos logs. / Remove private data from logs.
   - type: input
     id: version
     attributes:
-      label: Versão do launcher
+      label: Versão do launcher / Launcher version
       placeholder: 0.4.0-beta.1
     validations:
       required: true
   - type: input
     id: windows
     attributes:
-      label: Versão do Windows
+      label: Versão do Windows / Windows version
       placeholder: Windows 11 24H2
     validations:
       required: true
   - type: textarea
     id: expected
     attributes:
-      label: Comportamento esperado
+      label: Comportamento esperado / Expected behavior
     validations:
       required: true
   - type: textarea
     id: observed
     attributes:
-      label: O que aconteceu
+      label: O que aconteceu / What happened
     validations:
       required: true
   - type: textarea
     id: steps
     attributes:
-      label: Passos para reproduzir
-      placeholder: Liste os passos na ordem em que ocorreram.
+      label: Passos para reproduzir / Steps to reproduce
+      placeholder: Liste os passos. / List the steps in order.
     validations:
       required: true
   - type: textarea
     id: context
     attributes:
-      label: Contexto adicional
-      description: Apps envolvidos e mensagens da tela Atividade. Não envie apps.json.
+      label: Contexto adicional / Additional context
+      description: Apps e mensagens relevantes. Não envie apps.json. / Relevant apps and messages. Do not send apps.json.

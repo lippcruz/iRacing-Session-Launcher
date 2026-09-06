@@ -17,7 +17,7 @@ const contents = asar.listPackage(path.join(output, 'win-unpacked/resources/app.
 const forbidden = contents.filter((file) => /(?:node_modules|tests|verification|\.py$|\.cs$|\.map$|\.ps1$)/i.test(file));
 if (forbidden.length) throw new Error('Arquivos de desenvolvimento no aplicativo: ' + forbidden.join(', '));
 const allowed = new Set([
-  '/LICENSE', '/THIRD_PARTY_NOTICES.txt', '/package.json',
+  '/LICENSE', '/LICENSE.pt-BR', '/THIRD_PARTY_NOTICES.txt', '/package.json',
   '/src', '/src/main.js', '/src/preload.js', '/src/config.js', '/src/app-controller.js', '/src/session-monitor.js',
   '/src/renderer',
   '/src/renderer/index.html', '/src/renderer/styles.css', '/src/renderer/renderer.js',
@@ -31,7 +31,9 @@ fs.mkdirSync(bundle, { recursive: true });
 const files = [
   [installer, installerName],
   [path.join(root, 'docs/LEIA-ME.txt'), 'LEIA-ME.txt'],
+  [path.join(root, 'docs/README.en.txt'), 'README.en.txt'],
   [path.join(root, 'LICENSE'), 'LICENSE.txt'],
+  [path.join(root, 'LICENSE.pt-BR'), 'LICENSE.pt-BR.txt'],
   [path.join(root, 'CHANGELOG.md'), 'CHANGELOG.md'],
   [path.join(root, 'THIRD_PARTY_NOTICES.txt'), 'THIRD_PARTY_NOTICES.txt'],
   [path.join(root, 'src/renderer/vendor/lucide-LICENSE'), 'lucide-LICENSE.txt'],

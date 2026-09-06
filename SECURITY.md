@@ -1,5 +1,7 @@
 # Segurança
 
+**Português** | [English](SECURITY.en.md)
+
 ## Versões suportadas
 
 Durante a beta, somente a versão mais recente publicada recebe correções de

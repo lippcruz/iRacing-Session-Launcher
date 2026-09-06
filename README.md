@@ -1,5 +1,7 @@
 # iRacing Session Launcher
 
+**Português** | [English](README.en.md)
+
 Aplicativo gratuito para Windows que inicia overlays e programas auxiliares quando
 uma sessão do iRacing é aberta e, opcionalmente, encerra os processos que ele próprio
 iniciou ao final da sessão.
@@ -56,6 +58,17 @@ Get-FileHash ".\iRacing Session Launcher Setup 0.4.0-beta.1.exe" -Algorithm SHA2
 A beta ainda não possui assinatura digital de editor, portanto o Windows pode exibir
 um aviso do SmartScreen. Não baixe instaladores enviados por terceiros. O usuário
 final não precisa instalar Node.js, Python ou ferramentas de desenvolvimento.
+
+### Se o Windows mostrar "aplicativo não reconhecido"
+
+1. Confirme que o arquivo veio da página **Releases** deste repositório.
+2. Compare seu SHA-256 com `SHA256SUMS.txt` usando o comando acima.
+3. Se o hash for idêntico, selecione **Mais informações** e **Executar assim mesmo**.
+4. Se o hash for diferente, não execute o arquivo e reporte o ocorrido.
+
+Não desative o SmartScreen ou o antivírus. A solução permanente planejada é assinar
+todas as versões com uma identidade validada ou distribuir pela Microsoft Store.
+Certificados autoassinados não estabelecem confiança em computadores de terceiros.
 
 As configurações ficam em `%APPDATA%\iracing-session-launcher\apps.json`.
 

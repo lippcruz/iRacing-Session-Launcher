@@ -15,3 +15,9 @@ o aplicativo em src/renderer/vendor/lucide-LICENSE dentro de app.asar.
 O aplicativo nao redistribui codigo ou bibliotecas do iRacingManager original.
 Icones extraidos dos executaveis do usuario sao exibidos apenas localmente.
 Marcas e nomes de aplicativos pertencem aos respectivos titulares.
+
+ENGLISH
+Electron 44.2.0 is MIT licensed; the installed runtime contains Electron and Chromium
+license notices. Lucide 1.41.0 is ISC licensed and based on Feather Icons (MIT); its
+complete license accompanies the bundle. This application redistributes no original
+iRacing Manager code or library. Third-party names and marks belong to their owners.

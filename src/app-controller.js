@@ -79,7 +79,7 @@ class AppController extends EventEmitter {
     const key = keyFor(item);
     if (this.disposed || this.pending.has(key) || this.running.has(key)) return;
     if (this.processes.some((p) => matches(item, p))) {
-      this.log('info', `${item.name}: ja estava aberto.`);
+      this.log('info', `${item.name}: já estava aberto. / was already open.`);
       return;
     }
     this.errors.delete(key);
@@ -87,9 +87,9 @@ class AppController extends EventEmitter {
     this.pending.set(key, job);
     this.emit('change');
     try {
-      if (!this.exists(item.path)) throw new Error('Executavel nao encontrado. Confira o caminho nas configuracoes do app.');
+      if (!this.exists(item.path)) throw new Error('Executável não encontrado; confira o caminho. / Executable not found; check its path.');
       if (item.delayStartSeconds > 0) {
-        this.log('info', `${item.name}: abertura agendada em ${item.delayStartSeconds}s.`);
+        this.log('info', `${item.name}: abertura em ${item.delayStartSeconds}s. / launch in ${item.delayStartSeconds}s.`);
         await new Promise((resolve) => {
           const timer = setTimeout(resolve, item.delayStartSeconds * 1000);
           job.cancel = () => { clearTimeout(timer); resolve(); };
@@ -112,12 +112,12 @@ class AppController extends EventEmitter {
       child.once('exit', (code) => {
         if (this.running.get(key) === child) this.running.delete(key);
         const failed = code && !child.launcherStopRequested;
-        if (failed) this.errors.set(key, `O processo encerrou com codigo ${code}.`);
-        this.log(failed ? 'error' : 'info', `${item.name}: processo encerrado${failed ? ` (codigo ${code})` : ''}.`);
+        if (failed) this.errors.set(key, `Processo encerrado com código ${code}. / Process exited with code ${code}.`);
+        this.log(failed ? 'error' : 'info', `${item.name}: processo encerrado / process exited${failed ? ` (${code})` : ''}.`);
       });
       child.unref();
       if (job.cancelled || this.disposed) { this.ownership.get(key).stopping = true; child.launcherStopRequested = true; child.kill(); }
-      else this.log('success', `${item.name}: iniciado${automatic ? ' com o iRacing' : ''}.`);
+      else this.log('success', `${item.name}: iniciado${automatic ? ' com o iRacing' : ''}. / started${automatic ? ' with iRacing' : ''}.`);
     } catch (error) {
       this.errors.set(key, error.message);
       this.log('error', `${item.name}: ${error.message}`);
@@ -159,15 +159,15 @@ class AppController extends EventEmitter {
       owner.terminating = true;
       try {
         await this.terminateProcess(adopted);
-        this.log('info', `${item.name}: encerramento solicitado.`);
+        this.log('info', `${item.name}: encerramento solicitado. / close requested.`);
       } catch (error) { this.log('error', `${item.name}: ${error.message}`); }
       finally { owner.terminating = false; owner.stopping = false; }
       return;
     }
     if (child && !child.killed) {
       try {
-        if (!child.kill()) throw new Error('O Windows nao permitiu encerrar o processo.');
-        this.log('info', `${item.name}: encerramento solicitado.`);
+        if (!child.kill()) throw new Error('O Windows não permitiu encerrar. / Windows did not allow the process to be closed.');
+        this.log('info', `${item.name}: encerramento solicitado. / close requested.`);
       } catch (error) { this.log('error', `${item.name}: ${error.message}`); }
     }
     this.emit('change');

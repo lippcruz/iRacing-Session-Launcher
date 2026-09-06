@@ -24,3 +24,11 @@ Mantidos: SDK com alternativa por processo, atrasos independentes, selecao multi
 icones detectados, atividade, bandeja e encerramento completo do monitor.
 
 Limitacoes e requisitos estao em docs/LEIA-ME.txt.
+
+### English
+
+First public community beta: Electron 44.2.0, validated configuration and process
+ownership, SDK/process monitoring, cancellable independent delays, sandboxed UI,
+top-frame-only IPC, exact package allowlist, no telemetry, bilingual interface and
+documentation, 22 unit tests, isolated SDK smoke test, and packaged-app verification.
+Known limitations and requirements are in `docs/README.en.txt`.

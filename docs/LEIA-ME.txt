@@ -12,6 +12,8 @@ A lista de aplicativos da versao Electron anterior e preservada.
 Esta beta nao possui assinatura digital de editor. O Windows pode mostrar
 editor desconhecido ou um aviso de reputacao. O SHA256SUMS.txt permite conferir
 a integridade do arquivo, mas nao substitui uma assinatura de editor.
+Se o arquivo veio da Release oficial e o hash for identico, use Mais informacoes e
+Executar assim mesmo. Se o hash diferir, nao execute. Nao desative o SmartScreen.
 
 PRIMEIRA SESSAO
 1. Adicione os executaveis dos seus overlays e aplicativos auxiliares.

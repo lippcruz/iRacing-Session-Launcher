@@ -110,12 +110,16 @@ async function waitFor(check, label, timeout = 15000) {
   fixture.stdin.write('disconnect\n');
   await waitFor(async () => !(await page.evaluate(() => window.launcher.getState())).apps.some((item) => item.managed), 'SDK disconnect stops companion');
   current = await page.evaluate(() => window.launcher.getState());
-  assert.ok(current.events.some((event) => event.message === 'Sessao do iRacing encerrada.'));
-  await waitFor(async () => (await page.evaluate(() => window.launcher.getState())).events.some((event) => event.message === 'Test companion: encerramento solicitado.'), 'stop completion logged');
+  assert.ok(current.events.some((event) => event.message.includes('iRacing session ended')));
+  await waitFor(async () => (await page.evaluate(() => window.launcher.getState())).events.some((event) => event.message.includes('Test companion: encerramento solicitado')), 'stop completion logged');
   assert.equal(current.apps.find((item) => item.id === 'Test companion').status, 'stopped');
   assert.throws(() => process.kill(companionPid, 0));
   await page.getByRole('button', { name: 'Configurações', exact: true }).click();
   await page.screenshot({ path: path.join(output, 'settings.png') });
+  await page.locator('#language').selectOption('en');
+  await page.waitForFunction(() => document.documentElement.lang === 'en' && document.querySelector('#viewTitle').textContent === 'Settings');
+  assert.equal(await page.locator('#startAll').textContent(), 'Start all');
+  await page.screenshot({ path: path.join(output, 'settings-en.png') });
   await assertLayout();
   const probePid = await app.evaluate(() => process.pid);
   await app.close();
@@ -124,7 +128,7 @@ async function waitFor(check, label, timeout = 15000) {
   const probeList = JSON.parse(execFileSync(path.join(root, 'build-assets/SessionProbe.exe'), ['--once'], { windowsHide: true, encoding: 'utf8' }));
   assert.equal(probeList.processes.some((process) => process.name === 'SessionProbe.exe' && process.parentPid === probePid), false);
   assert.deepEqual(errors, []);
-  fs.writeFileSync(path.join(output, 'smoke-result.json'), JSON.stringify({ passed: true, screenshots: 7, checks: ['real Electron UI', 'compact layout', 'default auto-stop', 'executable metadata', 'SDK shared-memory trigger', 'failure isolation', 'single launch', 'manual-only skipped', 'stop owned process', 'probe shutdown'], rendererErrors: errors }, null, 2));
+  fs.writeFileSync(path.join(output, 'smoke-result.json'), JSON.stringify({ passed: true, screenshots: 8, checks: ['real Electron UI', 'Portuguese and English UI', 'compact layout', 'default auto-stop', 'executable metadata', 'SDK shared-memory trigger', 'failure isolation', 'single launch', 'manual-only skipped', 'stop owned process', 'probe shutdown'], rendererErrors: errors }, null, 2));
   console.log('Electron smoke passed: SDK signal -> app launch, no duplicate, stop, layouts, clean exit.');
 })().catch(async (error) => {
   if (page && !page.isClosed()) {

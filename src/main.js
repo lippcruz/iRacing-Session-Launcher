@@ -8,7 +8,7 @@ const { SessionMonitor, isSimulator } = require('./session-monitor');
 const { AppController } = require('./app-controller');
 const { normalizeConfig, validateConfigChange } = require('./config');
 
-const defaults = { monitorEnabled: true, stopWhenIracingCloses: true, apps: [] };
+const defaults = { language: 'auto', monitorEnabled: true, stopWhenIracingCloses: true, apps: [] };
 const monitor = new SessionMonitor();
 const controller = new AppController({ terminateProcess: (process) => new Promise((resolve, reject) => {
   execFile(probePath, ['--stop', String(process.pid), process.startedAt], { windowsHide: true, timeout: 6000 },
@@ -49,7 +49,7 @@ function loadConfig() {
       config = normalizeConfig(parsed);
     } catch (error) {
       fs.copyFileSync(configPath, configPath + '.backup-' + Date.now());
-      record('error', 'Nao foi possivel ler a configuracao: ' + error.message);
+      record('error', 'Não foi possível ler a configuração. / Could not read configuration: ' + error.message);
     }
   }
   monitor.setEnabled(config.monitorEnabled);
@@ -87,7 +87,7 @@ function startProbe() {
   lines.on('line', (line) => {
     try {
       const snapshot = JSON.parse(line.replace(/^\uFEFF/, ''));
-      if (!Array.isArray(snapshot.processes)) throw new Error('Resposta invalida do monitor.');
+      if (!Array.isArray(snapshot.processes)) throw new Error('Resposta inválida do monitor. / Invalid monitor response.');
       if (!app.isPackaged && process.env.LAUNCHER_TEST_MAP) snapshot.processes = snapshot.processes.filter((process) => !isSimulator(process));
       lastProbeAt = Date.now();
       latestSnapshot = snapshot;
@@ -98,18 +98,18 @@ function startProbe() {
   child.stderr.on('data', (data) => record('error', 'Monitor: ' + data.toString().trim()));
   child.once('error', (error) => {
     monitor.fail(error.message);
-    record('error', 'Falha ao iniciar monitor: ' + error.message);
+    record('error', 'Falha ao iniciar o monitor. / Failed to start monitor: ' + error.message);
   });
   child.once('close', () => {
     lines.close();
     if (quitting) return;
-    monitor.fail('Monitor desconectado. Tentando reconectar.');
+    monitor.fail('Monitor desconectado; reconectando. / Monitor disconnected; reconnecting.');
     restartTimer = setTimeout(startProbe, 3000);
   });
 }
 
 async function appInfoFromPath(filePath) {
-  if (typeof filePath !== 'string' || filePath.length > 32767 || !path.win32.isAbsolute(filePath) || path.extname(filePath).toLowerCase() !== '.exe' || !fs.existsSync(filePath) || !fs.statSync(filePath).isFile()) throw new Error('Selecione um executavel .exe existente.');
+  if (typeof filePath !== 'string' || filePath.length > 32767 || !path.win32.isAbsolute(filePath) || path.extname(filePath).toLowerCase() !== '.exe' || !fs.existsSync(filePath) || !fs.statSync(filePath).isFile()) throw new Error('Selecione um executável .exe existente. / Select an existing .exe file.');
   let name = path.basename(filePath, path.extname(filePath));
   try {
     const metadata = await new Promise((resolve, reject) => execFile(probePath, ['--metadata', filePath], { windowsHide: true, timeout: 5000 },
@@ -150,12 +150,12 @@ function createWindow() {
   mainWindow.webContents.session.setPermissionRequestHandler((_webContents, _permission, callback) => callback(false));
   tray = new Tray(path.join(assets, 'app.ico'));
   tray.setContextMenu(Menu.buildFromTemplate([
-    { label: 'Abrir Session Launcher', click: showWindow },
+    { label: 'Abrir / Open Session Launcher', click: showWindow },
     { type: 'separator' },
-    { label: 'Iniciar todos', click: () => { try { void startConfiguredApps(config.apps); } catch (error) { record('error', error.message); } } },
-    { label: 'Parar iniciados', click: () => controller.stopMany(config.apps) },
+    { label: 'Iniciar todos / Start all', click: () => { try { void startConfiguredApps(config.apps); } catch (error) { record('error', error.message); } } },
+    { label: 'Parar iniciados / Stop started', click: () => controller.stopMany(config.apps) },
     { type: 'separator' },
-    { label: 'Sair', click: () => app.quit() },
+    { label: 'Sair / Exit', click: () => app.quit() },
   ]));
   tray.on('double-click', showWindow);
   tray.on('click', showWindow);
@@ -165,11 +165,11 @@ controller.on('change', pushState);
 controller.on('log', ({ level, message }) => record(level, message));
 monitor.on('state', pushState);
 monitor.on('session-start', (state) => {
-  record('success', state.source === 'SDK' ? 'Sessao conectada ao iRacing. Iniciando aplicativos.' : 'Simulador detectado por processo. Iniciando aplicativos.');
+  record('success', state.source === 'SDK' ? 'Sessão conectada; iniciando aplicativos. / Session connected; starting applications.' : 'Simulador detectado; iniciando aplicativos. / Simulator detected; starting applications.');
   void controller.startMany(config.apps, true);
 });
 monitor.on('session-stop', () => {
-  record('info', 'Sessao do iRacing encerrada.');
+  record('info', 'Sessão do iRacing encerrada. / iRacing session ended.');
   controller.cancelPending(true);
   if (config.stopWhenIracingCloses) controller.stopMany(config.apps.filter((item) => item.stopWithIracing));
 });
@@ -180,12 +180,12 @@ else {
   app.whenReady().then(async () => {
     loadConfig();
     createWindow();
-    record('info', 'Monitor iniciado. Aguardando uma sessao do iRacing.');
+    record('info', 'Monitor iniciado; aguardando iRacing. / Monitor started; waiting for iRacing.');
     startProbe();
     watchdog = setInterval(() => {
       if (Date.now() - lastProbeAt > 10000 && probe && !probe.killed) {
-        monitor.fail('Monitor sem resposta. Reconectando.');
-        record('error', 'Monitor sem resposta. Reiniciando a conexao.');
+        monitor.fail('Monitor sem resposta; reconectando. / Monitor unresponsive; reconnecting.');
+        record('error', 'Monitor sem resposta; reiniciando. / Monitor unresponsive; restarting.');
         probe.kill();
       }
     }, 5000);
@@ -213,7 +213,7 @@ app.on('window-all-closed', () => app.quit());
 function handleTrusted(channel, handler) {
   ipcMain.handle(channel, (event, ...args) => {
     if (!mainWindow || mainWindow.isDestroyed() || event.sender !== mainWindow.webContents || event.senderFrame !== mainWindow.webContents.mainFrame) {
-      throw new Error('Origem IPC nao autorizada.');
+      throw new Error('Origem IPC não autorizada. / Unauthorized IPC source.');
     }
     return handler(...args);
   });
@@ -221,7 +221,7 @@ function handleTrusted(channel, handler) {
 
 function selectedApps(ids) {
   if (!Array.isArray(ids) || ids.length > config.apps.length || ids.some((id) => typeof id !== 'string')) {
-    throw new Error('Selecao de aplicativos invalida.');
+    throw new Error('Seleção de aplicativos inválida. / Invalid application selection.');
   }
   const selected = new Set(ids);
   return config.apps.filter((item) => selected.has(item.id));
@@ -245,12 +245,12 @@ handleTrusted('save-config', (nextConfig) => {
   return currentState();
 });
 handleTrusted('choose-exe', async () => {
-  const result = await dialog.showOpenDialog(mainWindow, { title: 'Selecionar aplicativo', filters: [{ name: 'Aplicativos Windows', extensions: ['exe'] }], properties: ['openFile'] });
+  const result = await dialog.showOpenDialog(mainWindow, { title: 'Selecionar aplicativo / Select application', filters: [{ name: 'Aplicativos Windows / Windows applications', extensions: ['exe'] }], properties: ['openFile'] });
   return result.canceled || !result.filePaths.length ? null : appInfoFromPath(result.filePaths[0]);
 });
 handleTrusted('app-info-from-path', (filePath) => appInfoFromPath(filePath));
 function startConfiguredApps(items) {
-  if (!latestSnapshot || Date.now() - lastProbeAt > 5000) throw new Error('Aguarde o monitor atualizar a lista de processos antes de iniciar os apps.');
+  if (!latestSnapshot || Date.now() - lastProbeAt > 5000) throw new Error('Aguarde o monitor atualizar antes de iniciar os apps. / Wait for the monitor to refresh before starting apps.');
   return controller.startMany(items);
 }
 handleTrusted('start-all', () => startConfiguredApps(config.apps));

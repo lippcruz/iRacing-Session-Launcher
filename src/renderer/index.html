@@ -10,7 +10,7 @@
 <body>
   <header class="titlebar"><i data-lucide="flag"></i><span>iRacing Session Launcher</span></header>
   <div class="workspace">
-    <nav class="rail" aria-label="Navega&#231;&#227;o principal">
+    <nav class="rail" aria-label="Navega&#231;&#227;o principal / Main navigation">
       <button class="nav-button active" data-view="apps" title="Aplicativos" aria-label="Aplicativos" aria-current="page"><i data-lucide="panels-top-left"></i></button>
       <button class="nav-button" data-view="activity" title="Atividade" aria-label="Atividade"><i data-lucide="activity"></i><span id="errorBadge" hidden></span></button>
       <div class="rail-space"></div>
@@ -41,6 +41,7 @@
       </section>
       <section id="settingsView" class="view settings-view" hidden>
         <h2>Comportamento</h2>
+        <div class="setting-row"><div><strong id="languageTitle">Idioma</strong><p id="languageDescription">Usar o idioma do Windows ou escolher manualmente.</p></div><select id="language" class="language-select" aria-label="Idioma / Language"><option value="auto">Automático / Automatic</option><option value="pt-BR">Português</option><option value="en">English</option></select></div>
         <div class="setting-row"><div><strong>Fechar apps ao sair do iRacing</strong><p>Somente os iniciados aqui e marcados para fechar.</p></div><label class="toggle"><input id="stopWhenIracingCloses" type="checkbox" aria-label="Fechar apps ao sair do iRacing" /><span class="switch"></span></label></div>
         <div class="setting-row"><div><strong>Ao fechar a janela</strong><p>Encerrar o launcher e o monitoramento.</p></div><i data-lucide="power"></i></div>
         <h2 class="settings-heading">Monitoramento</h2>
