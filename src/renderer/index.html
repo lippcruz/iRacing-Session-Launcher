@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'none'; img-src 'self' data:; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'none'; frame-src 'none'; form-action 'none'" />
+  <title>iRacing Session Launcher</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="titlebar"><i data-lucide="flag"></i><span>iRacing Session Launcher</span></header>
+  <div class="workspace">
+    <nav class="rail" aria-label="Navega&#231;&#227;o principal">
+      <button class="nav-button active" data-view="apps" title="Aplicativos" aria-label="Aplicativos" aria-current="page"><i data-lucide="panels-top-left"></i></button>
+      <button class="nav-button" data-view="activity" title="Atividade" aria-label="Atividade"><i data-lucide="activity"></i><span id="errorBadge" hidden></span></button>
+      <div class="rail-space"></div>
+      <button id="hideToTray" class="nav-button" title="Recolher para a bandeja" aria-label="Recolher para a bandeja"><i data-lucide="panel-bottom-close"></i></button>
+      <button class="nav-button" data-view="settings" title="Configura&#231;&#245;es" aria-label="Configura&#231;&#245;es"><i data-lucide="settings-2"></i></button>
+    </nav>
+    <main>
+      <div class="page-heading"><div><h1 id="viewTitle">Aplicativos</h1><p id="pageSubtitle">Sua lista de aplicativos</p></div><button id="addApp" class="button"><i data-lucide="plus"></i>Adicionar app</button></div>
+      <section class="connection" aria-label="Conex&#227;o com iRacing">
+        <div id="connectionIcon" class="connection-icon"><i data-lucide="radio-tower"></i></div>
+        <div class="connection-text"><strong id="iracingStatus">Verificando iRacing</strong><span id="connectionDetail">Conectando ao monitor</span></div>
+        <label class="toggle"><span>Autom&#225;tico</span><input id="monitorEnabled" type="checkbox" /><span class="switch"></span></label>
+      </section>
+      <section id="appsView" class="view">
+        <div class="toolbar">
+          <button id="startAll" class="button primary"><i data-lucide="play"></i>Iniciar todos</button>
+          <button id="stopStarted" class="button stop"><i data-lucide="square"></i>Parar todos</button>
+          <span class="spacer"></span>
+          <label class="search"><i data-lucide="search"></i><input id="searchApps" type="search" placeholder="Buscar aplicativo" aria-label="Buscar aplicativo" /></label>
+        </div>
+        <div class="list-heading"><label class="select-all"><input id="selectAll" type="checkbox" aria-label="Selecionar todos" /><span>APLICATIVO</span></label><span class="status-heading">STATUS</span><span></span></div>
+        <div id="appList" class="app-list" aria-label="Aplicativos cadastrados"></div>
+        <footer class="selection-bar"><span id="selectionCount">Nenhum selecionado</span><div><button id="startSelected" class="button small"><i data-lucide="play"></i>Iniciar selecionados</button><button id="stopSelected" class="button small stop"><i data-lucide="square"></i>Parar selecionados</button></div></footer>
+      </section>
+      <section id="activityView" class="view" hidden>
+        <div class="section-heading"><h2>Atividade recente</h2><label class="error-filter"><input id="errorsOnly" type="checkbox" />Somente erros</label></div>
+        <div id="eventList" class="event-list" aria-live="polite"></div>
+      </section>
+      <section id="settingsView" class="view settings-view" hidden>
+        <h2>Comportamento</h2>
+        <div class="setting-row"><div><strong>Fechar apps ao sair do iRacing</strong><p>Somente os iniciados aqui e marcados para fechar.</p></div><label class="toggle"><input id="stopWhenIracingCloses" type="checkbox" aria-label="Fechar apps ao sair do iRacing" /><span class="switch"></span></label></div>
+        <div class="setting-row"><div><strong>Ao fechar a janela</strong><p>Encerrar o launcher e o monitoramento.</p></div><i data-lucide="power"></i></div>
+        <h2 class="settings-heading">Monitoramento</h2>
+        <dl class="diagnostics"><div><dt>Conex&#227;o</dt><dd id="diagnosticSource"></dd></div><div><dt>&#218;ltima verifica&#231;&#227;o</dt><dd id="diagnosticTime"></dd></div><div><dt>Simulador</dt><dd id="diagnosticProcess"></dd></div><div><dt>Vers&#227;o</dt><dd id="version"></dd></div></dl>
+        <button id="openConfig" class="button"><i data-lucide="folder-open"></i>Abrir pasta de configura&#231;&#227;o</button>
+      </section>
+      <footer class="statusbar"><span><span id="monitorDot" class="dot"></span><span id="monitorStatus">Iniciando monitor</span></span><button id="viewActivity" class="status-link">Ver atividade<i data-lucide="arrow-up-right"></i></button></footer>
+    </main>
+  </div>
+  <div id="toast" role="alert" hidden></div>
+  <dialog id="appDialog">
+    <form id="appForm" class="dialog-content">
+      <header><h2 id="dialogTitle">Adicionar aplicativo</h2><button id="closeDialog" type="button" class="icon-button" aria-label="Fechar" title="Fechar"><i data-lucide="x"></i></button></header>
+      <div class="dialog-body">
+        <label class="field"><span>Execut&#225;vel</span><div class="path-row"><input id="appPath" type="text" required placeholder="Selecione um arquivo .exe" /><button id="browseExe" class="button" type="button" title="Selecionar execut&#225;vel" autofocus><i data-lucide="folder-open"></i>Procurar</button></div></label>
+        <div class="identity-preview"><div id="dialogIcon" class="app-icon large"></div><label class="field"><span>Nome do aplicativo</span><input id="appName" type="text" required /></label></div>
+        <div class="field-grid"><label class="field"><span>Argumentos <small>opcional</small></span><input id="appArguments" type="text" placeholder="Ex.: --minimized" /></label><label class="field"><span>Atraso (segundos)</span><input id="appDelay" type="number" min="0" max="3600" step="1" /></label></div>
+        <div class="dialog-options">
+          <label class="toggle"><span>App ativo</span><input id="appEnabled" type="checkbox" /><span class="switch"></span></label>
+          <label class="toggle"><span>Iniciar oculto</span><input id="appStartHidden" type="checkbox" /><span class="switch"></span></label>
+          <label class="toggle"><span>Abrir com iRacing</span><input id="appStartWithIracing" type="checkbox" /><span class="switch"></span></label>
+          <label class="toggle"><span>Fechar com iRacing</span><input id="appStopWithIracing" type="checkbox" /><span class="switch"></span></label>
+        </div>
+        <p id="dialogError" role="alert" hidden></p>
+      </div>
+      <footer><button id="deleteApp" type="button" class="icon-button stop" aria-label="Remover aplicativo" title="Remover aplicativo"><i data-lucide="trash-2"></i></button><span class="spacer"></span><button id="cancelDialog" type="button" class="button">Cancelar</button><button id="saveApp" type="submit" class="button primary"><i data-lucide="check"></i>Salvar</button></footer>
+    </form>
+  </dialog>
+  <script src="./vendor/lucide.min.js"></script>
+  <script src="./renderer.js"></script>
+</body>
+</html>

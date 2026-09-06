@@ -1,0 +1,51 @@
+iRacing Session Launcher - Beta 0.4.0-beta.1
+
+Aplicativo independente da comunidade. Nao e um produto oficial do iRacing.
+
+REQUISITOS
+Windows 10/11 de 64 bits, .NET Framework 4.x e iRacing instalado.
+Nao exige Node.js, Python, conta adicional ou o iRacingManager original.
+
+INSTALACAO
+Feche a versao anterior do Session Launcher e execute o instalador .exe.
+A lista de aplicativos da versao Electron anterior e preservada.
+Esta beta nao possui assinatura digital de editor. O Windows pode mostrar
+editor desconhecido ou um aviso de reputacao. O SHA256SUMS.txt permite conferir
+a integridade do arquivo, mas nao substitui uma assinatura de editor.
+
+PRIMEIRA SESSAO
+1. Adicione os executaveis dos seus overlays e aplicativos auxiliares.
+2. Confira as opcoes Abrir com iRacing e Fechar com iRacing.
+3. Deixe Automatico ligado e abra uma sessao do simulador.
+4. A tela Atividade mostra a deteccao e o resultado da abertura de cada app.
+
+O SDK do iRacing e o sinal principal. A deteccao por processo e a alternativa
+apos 8 segundos sem SDK. Abrir apenas o iRacing UI nao dispara os apps.
+
+FECHAMENTO
+O X encerra o launcher e o monitor. Apps ja abertos permanecem abertos.
+Recolher para a bandeja mantem o monitor ativo; clique no icone para voltar.
+Parar todos e Fechar com iRacing atuam somente nos processos iniciados aqui.
+Aplicativos abertos antes do launcher sao identificados, mas nao encerrados.
+O fechamento tenta encerrar a janela e pode forcar o processo apos 3 segundos.
+Use o fechamento automatico apenas para apps que nao tenham trabalho a salvar.
+
+DADOS LOCAIS
+Configuracoes: %APPDATA%\iracing-session-launcher\apps.json
+Atividade: %APPDATA%\iracing-session-launcher\activity.log
+Nao ha coleta de telemetria, conta, publicidade ou envio automatico de logs.
+Os aplicativos que voce configurar possuem suas proprias conexoes e politicas.
+
+LIMITACOES DA BETA
+- Interface em portugues; instalador Windows x64.
+- Iniciar oculto depende do comportamento do aplicativo de destino.
+- Aplicativos que exigem administrador podem precisar ser abertos manualmente.
+- Nao ha atualizacao automatica nem importacao do iRacingManager original.
+- Trocar o executavel ou remover um app em execucao exige para-lo primeiro.
+- O historico visivel corresponde a execucao atual; o arquivo de log tem rotacao.
+
+RELATAR PROBLEMAS
+Informe a versao desta beta, Windows, nome do aplicativo e passos para reproduzir
+ao responsavel que disponibilizou este pacote. Inclua o erro da tela Atividade.
+Revise logs e capturas antes de compartilhar: podem conter nomes de usuario,
+caminhos locais e argumentos dos aplicativos. Nunca envie apps.json publicamente.

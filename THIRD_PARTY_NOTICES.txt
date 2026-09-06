@@ -1,0 +1,17 @@
+iRacing Session Launcher - componentes de terceiros
+
+Electron 44.2.0
+Copyright Electron contributors. Licenca MIT.
+https://github.com/electron/electron
+O aplicativo instalado inclui LICENSE.electron.txt e LICENSES.chromium.html
+com os avisos do Electron, Chromium e demais componentes do runtime.
+
+Lucide 1.41.0
+Licenca ISC. Baseado em Feather Icons (licenca MIT).
+https://github.com/lucide-icons/lucide
+A copia integral da licenca acompanha este pacote em lucide-LICENSE.txt e
+o aplicativo em src/renderer/vendor/lucide-LICENSE dentro de app.asar.
+
+O aplicativo nao redistribui codigo ou bibliotecas do iRacingManager original.
+Icones extraidos dos executaveis do usuario sao exibidos apenas localmente.
+Marcas e nomes de aplicativos pertencem aos respectivos titulares.

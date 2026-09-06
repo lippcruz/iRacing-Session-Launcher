@@ -1,0 +1,46 @@
+name: Relatar um bug
+description: Informe um comportamento incorreto ou inesperado.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Remova nomes, caminhos pessoais e argumentos privados antes de enviar logs.
+  - type: input
+    id: version
+    attributes:
+      label: Versão do launcher
+      placeholder: 0.4.0-beta.1
+    validations:
+      required: true
+  - type: input
+    id: windows
+    attributes:
+      label: Versão do Windows
+      placeholder: Windows 11 24H2
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Comportamento esperado
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: O que aconteceu
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Passos para reproduzir
+      placeholder: Liste os passos na ordem em que ocorreram.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Contexto adicional
+      description: Apps envolvidos e mensagens da tela Atividade. Não envie apps.json.
