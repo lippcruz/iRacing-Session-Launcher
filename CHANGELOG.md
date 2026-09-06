@@ -32,3 +32,8 @@ ownership, SDK/process monitoring, cancellable independent delays, sandboxed UI,
 top-frame-only IPC, exact package allowlist, no telemetry, bilingual interface and
 documentation, 22 unit tests, isolated SDK smoke test, and packaged-app verification.
 Known limitations and requirements are in `docs/README.en.txt`.
+
+- Added a Microsoft Store AppX build using the Partner Center identity, Portuguese
+  and English resources, and only the required `runFullTrust` capability.
+- Chromium locale resources are limited to Portuguese and English, reducing the
+  installed size without removing runtime or graphics components.

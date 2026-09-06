@@ -115,6 +115,11 @@ npm run test:release
 npm run release:bundle
 ```
 
+Build the Partner Center package with `npm run dist:store`. It declares only the
+`runFullTrust` capability required by Electron and local process management. Microsoft
+signs the approved Store package. See the
+[bilingual Microsoft Store checklist](docs/MICROSOFT-STORE.md).
+
 ## Known limitations and contributions
 
 The beta is Windows x64 only and unsigned. Clean-machine installation/uninstallation

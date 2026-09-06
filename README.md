@@ -165,6 +165,16 @@ npm run test:release
 npm run release:bundle
 ```
 
+O pacote para envio à Microsoft Store usa a identidade reservada no Partner Center:
+
+```powershell
+npm run dist:store
+```
+
+Ele declara apenas `runFullTrust`, capacidade necessária para o Electron e para
+monitorar/iniciar aplicativos locais. A Microsoft assina o pacote aprovado na Store.
+Veja [o checklist bilíngue da Microsoft Store](docs/MICROSOFT-STORE.md).
+
 Os testes usam executáveis artificiais, mapa de memória separado e perfis temporários.
 O bundle só é criado após validar a mesma versão empacotada. `release/`,
 `verification/`, dependências, binários gerados e dados locais ficam fora do Git.
