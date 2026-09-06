@@ -55,7 +55,7 @@ pessoais de crianças.
 ### Alterações e contato
 
 Mudanças relevantes serão publicadas neste arquivo com uma nova data. Dúvidas sobre
-privacidade podem ser abertas na [página de Issues do repositório](https://github.com/lippcruz/iRacing-Session-Loucher/issues),
+privacidade podem ser abertas na [página de Issues do repositório](https://github.com/lippcruz/iRacing-Session-Launcher/issues),
 sem incluir dados pessoais, configurações ou logs não revisados.
 
 ## English
@@ -108,5 +108,5 @@ personal information.
 ### Changes and contact
 
 Material changes will be published in this file with a revised date. Privacy questions
-may be submitted through the [repository's Issues page](https://github.com/lippcruz/iRacing-Session-Loucher/issues)
+may be submitted through the [repository's Issues page](https://github.com/lippcruz/iRacing-Session-Launcher/issues)
 without including personal data, configuration files, or unreviewed logs.
