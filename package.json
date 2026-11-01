@@ -79,7 +79,7 @@
   "devDependencies": {
     "electron": "44.2.0",
     "electron-builder": "26.15.3",
-    "lucide": "1.41.0",
+    "lucide": "1.63.0",
     "playwright": "1.63.0"
   }
 }
